@@ -1,7 +1,6 @@
-let chatHistory = [];
+let chatHistory: { role: "user" | "assistant"; content: string }[] = [];
 
 export async function analyzeCase(message: string) {
-  // agregar mensaje del usuario al historial
   chatHistory.push({
     role: "user",
     content: message,
@@ -19,7 +18,6 @@ export async function analyzeCase(message: string) {
 
   const data = await res.json();
 
-  // guardar respuesta del asistente también
   if (data?.respuestaDirecta) {
     chatHistory.push({
       role: "assistant",
