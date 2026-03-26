@@ -40,7 +40,7 @@ Responde SIEMPRE en JSON válido con esta estructura:
       temperature: 0.5,
       messages: [
         { role: "system", content: systemPrompt },
-        { role: "user", content: message }
+        ...(messages || [])
       ],
       response_format: { type: "json_object" },
     });
