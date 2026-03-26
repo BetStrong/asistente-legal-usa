@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 export default async function handler(req, res) {
   try {
-    const { message } = req.body;
+    const { messages } = req.body;
 
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
@@ -40,7 +40,10 @@ Responde SIEMPRE en JSON válido con esta estructura:
       temperature: 0.5,
       messages: [
         { role: "system", content: systemPrompt },
-        ...(messages || [])
+        ...((messages || []).map((m) => ({
+          role: m.role,
+          content: m.content,
+        }))),
       ],
       response_format: { type: "json_object" },
     });
@@ -66,7 +69,6 @@ Responde SIEMPRE en JSON válido con esta estructura:
     }
 
     return res.status(200).json(parsed);
-
   } catch (error) {
     console.error(error);
 
