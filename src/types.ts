@@ -3,10 +3,12 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   perspectives?: {
+    tieneInformacionSuficiente: boolean;
+    respuestaDirecta: string;
     analisis: string;
-    defensor: string;
-    juez: string;
     evaluacion: string;
+    riesgos: string;
+    estrategia: string;
     probabilidad: string;
     recomendaciones: string;
     advertencia: string;
