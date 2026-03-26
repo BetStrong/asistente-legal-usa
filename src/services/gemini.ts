@@ -7,6 +7,5 @@ export async function analyzeCase(message: string) {
     body: JSON.stringify({ message }),
   });
 
-  const data = await res.json();
-  return data.reply;
+  return await res.json();
 }
